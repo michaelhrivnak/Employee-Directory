@@ -56,18 +56,18 @@ const sortUsersByProperty = (users,property,direction)=>{
 
 const reducer = (state, action) => {
     switch (action.type) {
-    case "loadData":
-        let users = action.data;
-        return {...state,users:users, filteredUsers: users.map(e=>e)};
-    case "filterUsers":
-        return {...state, filteredUsers: filterUsers(state.users,action.filters,state.sort,state.sortDirection)};
-    case "clearFilters":
-        return {...state, filteredUsers: sortUsersByProperty(state.users.map(e=>e),state.sort)};
-    case "sortUsers":
-        return {...state, filteredUsers: sortUsersByProperty(state.filteredUsers,action.property,action.direction)
-                                        ,sort:action.property,sortDirection:action.direction};
-    default:
-      throw new Error(`Invalid action type: ${action.type}`);
+        case "loadData":
+            let users = action.data;
+            return {...state,users:users, filteredUsers: users.map(e=>e)};
+        case "filterUsers":
+            return {...state, filteredUsers: filterUsers(state.users,action.filters,state.sort,state.sortDirection)};
+        case "clearFilters":
+            return {...state, filteredUsers: sortUsersByProperty(state.users.map(e=>e),state.sort)};
+        case "sortUsers":
+            return {...state, filteredUsers: sortUsersByProperty(state.filteredUsers,action.property,action.direction)
+                                            ,sort:action.property,sortDirection:action.direction};
+        default:
+        throw new Error(`Invalid action type: ${action.type}`);
     }
   };
 
